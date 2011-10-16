@@ -3,6 +3,7 @@ require 'rbconfig'
 
 
 gem 'eventmachine'
+gem 'rake'
 
 gem 'rspec'
 gem 'guard'
