@@ -1,8 +1,7 @@
 source :rubygems
 require 'rbconfig'
 
-
-gem 'eventmachine'
+gem 'eventmachine', "~>1.0.0.beta"
 gem 'rake'
 
 gem 'rspec'
