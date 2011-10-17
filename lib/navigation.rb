@@ -14,8 +14,6 @@ module Navigation
   end
 
   def self.move player, exitAlias
-    puts exitAlias
-
     theExit = player.location.exits.find { |i|
       i.alias == exitAlias
     }

@@ -11,15 +11,22 @@ describe Navigation do
 
   before do
     Navigation.raw_move(player, startingRoom)
-
     startingRoom.exits.push Exit.new(:alias => "north", :toRoom => northRoom)
   end
 
   # > move north
   it "can move north" do
     player.location.should == startingRoom
+    startingRoom.contents.should include player
     Navigation.move(player, "north").should == true
     player.location.should == northRoom
+  end
+
+  it "should update rooms contents when player enter/leaving" do
+      startingRoom.contents.should include player
+      Navigation.move(player, "north")
+      startingRoom.contents.should_not include player
+      northRoom.contents.should include player
   end
 
 end
