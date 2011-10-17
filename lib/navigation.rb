@@ -2,6 +2,7 @@
 module Navigation
 
   def self.raw_move(player, room)
+    raise ArgumentError unless player or room
     if player.location
       player.location.contents.delete(player)
     end
@@ -15,15 +16,11 @@ module Navigation
   def self.move player, exitAlias
     puts exitAlias
 
-    theExit = player.location.exits.find { |i| 
-      puts i.alias
-
+    theExit = player.location.exits.find { |i|
       i.alias == exitAlias
     }
-    
-    puts theExit ? theExit : "nil" 
-    
-    theExit ? raw_move(:player, theExit.toRoom) : false
+
+    theExit ? raw_move(player, theExit.toRoom) : false
 
   end
 
