@@ -11,7 +11,6 @@ describe Navigation do
 
   before do
     Navigation.raw_move(player, startingRoom)
-
     startingRoom.exits.push Exit.new(:alias => "north", :toRoom => northRoom)
   end
 
