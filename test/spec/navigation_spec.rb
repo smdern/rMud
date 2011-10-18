@@ -4,10 +4,10 @@ require 'room'
 require 'player'
 require 'navigation'
 
-describe Navigation do
-  let (:player) { Player.new }
-  let (:northRoom) { Room.new }
-  let (:startingRoom) { Room.new }
+describe Navigation, "Room Navigation"do
+  let(:player) { Player.new }
+  let(:northRoom) { Room.new }
+  let(:startingRoom) { Room.new }
 
   before do
     Navigation.raw_move(player, startingRoom)
@@ -29,4 +29,7 @@ describe Navigation do
       northRoom.contents.should include player
   end
 
+  it "should catch illegal room moves" do
+    Navigation.move(player, "south").should == false
+  end
 end
