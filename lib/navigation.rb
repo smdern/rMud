@@ -18,7 +18,14 @@ module Navigation
       i.alias == exitAlias
     }
 
-    theExit ? raw_move(player, theExit.toRoom) : false
+    if theExit
+      raw_move(player, theExit.toRoom)
+      player.send_text << "You move #{exitAlias}"
+      return true
+    else
+      player.send_text << "You can't move #{exitAlias}"
+      return false
+    end
 
   end
 
