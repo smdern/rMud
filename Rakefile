@@ -1,6 +1,6 @@
-task :default => [:run]
+task :default => [:test]
 
 
-task :run do
-  puts 'hi'
+task :test  do
+  sh 'rspec --color --fail-fast --format nested test/spec'
 end
