@@ -1,13 +1,16 @@
+require 'action'
 
 describe Action, "action doesnt' exist" do
-  it "should return a notice to the player" do
-
-  end
 end
 
 describe Action, "look" do
-  let(:player) { Player.new }
-  let(:room) { Room.new }
+  let(:playerA) { Player.new }
+  let(:playerB) { Player.new }
+  let(:startingRoom) { Room.new }
+  let(:northRoom) { Room.new }
+  let(:southRoom) { Room.new }
+  let(:eastRoom) { Room.new }
+  let(:more_eastRoom) { Room.new }
 
   before do
 
