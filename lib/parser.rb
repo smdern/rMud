@@ -13,7 +13,7 @@ module CommandParser
     verb, args = args.split(" ", 2)
 
     verb = @@verbs.find {|x| x.name == verb}
-    
+
     return nil unless verb
 
     Action.new(actor, verb, args)

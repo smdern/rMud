@@ -21,14 +21,14 @@ class Room
 
       cardinalDirections = ["north", "south", "east", "west"]
 
-      if (cardinalDirections.contains(lhs) && cardinalDirections.contains(rhs))
-        cardinalDirections.index_of(lhs).compare(cardinalDirections.index_of(rhs))
-      elsif cardinalDirections.contains(lhs)
+      if (cardinalDirections.include?(lhs.alias) && cardinalDirections.include?(rhs.alias))
+        cardinalDirections.index(lhs.alias) <=> cardinalDirections.index(rhs.alias)
+      elsif cardinalDirections.include?(lhs.alias)
         -1
-      elsif cardinalDirections.contains(rhs)
+      elsif cardinalDirections.include?(rhs.alias)
         1
       else
-        lhs.compare rhs
+        lhs.alias <=> rhs.alias
       end
 
     end
