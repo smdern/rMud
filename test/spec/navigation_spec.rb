@@ -5,9 +5,9 @@ require 'player'
 require 'navigation'
 
 describe Navigation, "Traverse Rooms" do
-  let(:player) { Player.new }
-  let(:northRoom) { Room.new }
-  let(:startingRoom) { Room.new }
+  let(:player) { Player.new(:name => "Elminister") }
+  let(:northRoom) { Room.new(:title => "north room") }
+  let(:startingRoom) { Room.new(:title => "starting room") }
 
   before do
     Navigation.raw_move(player, startingRoom)
@@ -39,9 +39,9 @@ describe Navigation, "Traverse Rooms" do
 end
 
 describe Navigation, "Players receive success/error message" do
-  let(:player) { Player.new }
-  let(:startingRoom) { Room.new }
-  let(:northRoom) { Room.new }
+  let(:player) { Player.new(:name => "Elminister") }
+  let(:startingRoom) { Room.new(:name => "starting Room") }
+  let(:northRoom) { Room.new(:name => "northing room") }
 
   before do
     Navigation.raw_move(player, startingRoom)

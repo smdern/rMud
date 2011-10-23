@@ -38,19 +38,19 @@ describe Actions, "look" do
     playerA.send_text.last.should == "Raistlin"
   end
 
-  # > look player
-  it "should return a description of a player and their inventory" do
-    Actions.look(playerA, "Raistlin")
-    playerA.send_text.first.should == "Raistlin"
-    playerA.send_text.last.should == playerB_description
-  end
+  # # > look player
+  # it "should return a description of a player and their inventory" do
+  #   Actions.look(playerA, "Raistlin")
+  #   playerA.send_text.first.should == "Raistlin"
+  #   playerA.send_text.last.should == playerB_description
+  # end
 
-  # > look direction
-  it "should return the direction's room short description" do
-    Actions.look(playerA, "north")
-    playerA.send_text.first.should == "north_short_desc"
+  # # > look direction
+  # it "should return the direction's room short description" do
+  #   Actions.look(playerA, "north")
+  #   playerA.send_text.first.should == "north_short_desc"
 
-  end
+  # end
 end
 
 describe Actions, "exit" do
