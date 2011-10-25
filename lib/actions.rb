@@ -27,4 +27,8 @@ module Actions
       end
     end
   end
+
+  def self.scan player
+    player.send_text << "You peer intently all around, and see :"
+  end
 end

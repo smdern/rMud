@@ -102,12 +102,53 @@ describe Actions, "say" do
 end
 
 describe Actions, "scan" do
+  let(:startRoom) { Room.new(:title => 'start room') }
   let(:room1s) { Room.new(:title => "room1s") }
   let(:room2s) { Room.new(:title => "room2s") }
   let(:room3s) { Room.new(:title => "room3s") }
+  let(:room4s) { Room.new(:title => "room4s") }
+  let(:room5s) { Room.new(:title => "room5s") }
+  let(:room1e) { Room.new(:title => "room1e") }
+  let(:room2e) { Room.new(:title => "room2e") }
+  let(:room3e) { Room.new(:title => "room3e") }
+  let(:room1e) { Room.new(:title => "room1e") }
+  let(:room1e1s) { Room.new(:title => "room1e1s") }
+  let(:startPlayer) { Player.new(:name => "startPlayer") }
+  let(:startOtherPlayer) { Player.new(:name => "Other person") }
+  let(:player1s) { Player.new(:name => "player1s") }
+  let(:player2s) { Player.new(:name => "player2s") }
+  let(:player4s) { Player.new(:name => "player3s") }
+  let(:player5s) { Player.new(:name => "player5s") }
+  let(:player2e) { Player.new(:name => "player2e") }
+  let(:player1e1s) { Player.new(:name => "player1e1s") }
 
+  before do
+    startRoom.exits << Exit.new(:alias => "south", :toRoom => room1s)
+    startRoom.exits << Exit.new(:alias => "east", :toRoom => room1e)
+    room1s.exits << Exit.new(:alias => "south", :toRoom => room2s)
+    room2s.exits << Exit.new(:alias => "south", :toRoom => room3s)
+    room3s.exits << Exit.new(:alias => "south", :toRoom => room4s)
+    room1e.exits << Exit.new(:alias => "east", :toRoom => room2e)
+    room1e.exits << Exit.new(:alias => "south", :toRoom => room1e1s)
+    Navigation.raw_move(player1s, room1s)
+    Navigation.raw_move(player2s, room2s)
+    Navigation.raw_move(player4s, room4s)
+    Navigation.raw_move(player5s, room5s)
+    Navigation.raw_move(player1e1s, room1e1s)
+    Navigation.raw_move(player2e, room2e)
+    Navigation.raw_move(startPlayer, startRoom)
+    Navigation.raw_move(startOtherPlayer, startRoom)
+  end
   # > scan
-  it "should return contents of rooms up to" do
-    pending "scan stuff"
+  it "should return contents of rooms in a line" do
+    Actions.scan(startPlayer)
+    startPlayer.send_text[0].should == "You peer intently all around, and see :"
+    startPlayer.send_text[1].should == "            Other person       : right here."
+    startPlayer.send_text[2].should == "                player1e       : immediately to the east"
+    startPlayer.send_text[3].should == "                player2e       : nearby to the east."
+    startPlayer.send_text[4].should == "                player1s       : immediately to the south"
+    startPlayer.send_text[5].should == "                player2s       : nearby to the east."
+    startPlayer.send_text[6].should == "                player4s       : a ways to the south"
+    startPlayer.send_text[7].should == "                player5s       : far to the south"
   end
 end
