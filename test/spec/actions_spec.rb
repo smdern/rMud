@@ -53,11 +53,27 @@ describe Actions, "look" do
   # end
 end
 
-describe Actions, "exit" do
+describe Actions, "exits" do
+  let(:startingRoom) { Room.new(:title => "start") }
+  let(:playerA) { Player.new(:name => "Tetto") }
+  let(:northRoom) { Room.new(:title => "north room") }
+  let(:eastRoom) { Room.new(:title => "east room") }
+  let(:upRoom) { Room.new(:title => "up dawg") }
 
-  # > exit
+  before do
+    Navigation.raw_move(playerA, startingRoom)
+    startingRoom.exits << Exit.new(:alias => "north", :toRoom => northRoom)
+    startingRoom.exits << Exit.new(:alias => "up", :toRoom => upRoom)
+    startingRoom.exits << Exit.new(:alias => "east", :toRoom => eastRoom)
+  end
+
+  # > exits
   it "should return a list of exits and their room title" do
-    pending "exit stuff"
+    Actions.exits(playerA)
+    playerA.send_text.first.should == "Obvious exits:"
+    playerA.send_text[1].should == "North - north room"
+    playerA.send_text[2].should == "East  - east room"
+    playerA.send_text[3].should == "Up    - up dawg"
   end
 end
 

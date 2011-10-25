@@ -12,6 +12,13 @@ module Actions
     end
   end
 
+  def self.exits player
+    player.send_text << "Obvious exits:"
+    player.location.exits.each do |exit|
+      player.send_text << "%-5s - %s" % [exit.alias.capitalize, exit.toRoom.title]
+    end
+  end
+
   def self.say player, args
     player.send_text << "You say '#{args}'"
     player.location.contents.each do |i|
