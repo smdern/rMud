@@ -143,12 +143,12 @@ describe Actions, "scan" do
   it "should return contents of rooms in a line" do
     Actions.scan(startPlayer)
     startPlayer.send_text[0].should == "You peer intently all around, and see :"
-    startPlayer.send_text[1].should == "            Other person       : right here."
-    startPlayer.send_text[2].should == "                player1e       : immediately to the east"
-    startPlayer.send_text[3].should == "                player2e       : nearby to the east."
-    startPlayer.send_text[4].should == "                player1s       : immediately to the south"
-    startPlayer.send_text[5].should == "                player2s       : nearby to the east."
-    startPlayer.send_text[6].should == "                player4s       : a ways to the south"
-    startPlayer.send_text[7].should == "                player5s       : far to the south"
+    startPlayer.send_text[1].should == "                  Other person : right here."
+    startPlayer.send_text[2].should == "                      player1e : immediately to the east"
+    startPlayer.send_text[3].should == "                      player2e : nearby to the east."
+    startPlayer.send_text[4].should == "                      player1s : immediately to the south"
+    startPlayer.send_text[5].should == "                      player2s : nearby to the east."
+    startPlayer.send_text[6].should == "                      player4s : a ways to the south"
+    startPlayer.send_text[7].should == "                      player5s : far to the south"
   end
 end

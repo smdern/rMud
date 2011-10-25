@@ -30,5 +30,10 @@ module Actions
 
   def self.scan player
     player.send_text << "You peer intently all around, and see :"
+    player.location.contents.each do |i|
+      player.send_text << "%+30s : %s" % [i.name, "right here."] unless i == player
+    end
+    player.location.exits.each do |direction|
+    end
   end
 end
