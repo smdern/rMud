@@ -12,4 +12,13 @@ module Actions
       return
     end
   end
+
+  def self.say player, args
+    player.send_text << "You say '#{args}'"
+    player.location.contents.each do |i|
+      if i.class == Player
+        i.send_text << "#{player.name} says '#{args}'"
+      end
+    end
+  end
 end

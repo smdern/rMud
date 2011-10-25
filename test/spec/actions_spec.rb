@@ -60,3 +60,27 @@ describe Actions, "exit" do
     pending "exit stuff"
   end
 end
+
+describe Actions, "say" do
+  let(:room) { Room.new(:title => "room",
+                        :long_description => "long_desc",
+                        :short_description => "short_desc"
+                       )
+  }
+  let(:playerA) { Player.new(:name => "Tetto") }
+  let(:playerB) { Player.new(:name => "Raistlin") }
+  let(:playerC) { Player.new(:name => "Elminister") }
+
+  before do
+    Navigation.raw_move(playerA, room)
+    Navigation.raw_move(playerB, room)
+    Navigation.raw_move(playerC, room)
+  end
+  # > say 'hi'
+  it "all players in the room should receive 'hi'" do
+    Actions.say(playerA, "hi")
+    playerB.send_text.first.should == "#{playerA.name} says 'hi'"
+    playerC.send_text.first.should == "#{playerA.name} says 'hi'"
+    playerA.send_text.first.should == "You say 'hi'"
+  end
+end

@@ -19,7 +19,7 @@ class Room
   private
     def exitSort (lhs, rhs)
 
-      cardinalDirections = ["north", "south", "east", "west"]
+      cardinalDirections = ["north", "south", "east", "west", "up", "down"]
 
       if (cardinalDirections.include?(lhs.alias) && cardinalDirections.include?(rhs.alias))
         cardinalDirections.index(lhs.alias) <=> cardinalDirections.index(rhs.alias)
