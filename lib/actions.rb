@@ -1,4 +1,3 @@
-
 module Actions
 
   def self.look player, args = nil

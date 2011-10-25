@@ -3,8 +3,6 @@ class Action
   end
 end
 
-
-
 module CommandParser
 
   @@verbs = []

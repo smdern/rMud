@@ -84,3 +84,14 @@ describe Actions, "say" do
     playerA.send_text.first.should == "You say 'hi'"
   end
 end
+
+describe Actions, "scan" do
+  let(:room1s) { Room.new(:title => "room1s") }
+  let(:room2s) { Room.new(:title => "room2s") }
+  let(:room3s) { Room.new(:title => "room3s") }
+
+  # > scan
+  it "should return contents of rooms up to" do
+    pending "scan stuff"
+  end
+end
