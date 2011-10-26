@@ -40,17 +40,23 @@ end
 
 describe Navigation, "Players receive success/error message" do
   let(:player) { Player.new(:name => "Elminister") }
+  let(:otherPlayer) { Player.new(:name => "Tetto") }
   let(:startingRoom) { Room.new(:name => "starting Room") }
   let(:northRoom) { Room.new(:name => "northing room") }
 
   before do
+    Navigation.raw_move(otherPlayer, startingRoom)
     Navigation.raw_move(player, startingRoom)
     startingRoom.exits.push Exit.new(:alias => "north", :toRoom => northRoom)
+    northRoom.exits.push Exit.new(:alias => "south", :toRoom => startingRoom)
   end
 
   it "should report success message to Player " do
       Navigation.move(player, "north")
       player.send_text.should include "You move north"
+      otherPlayer.send_text.first.should == "Elminister leaves north"
+      Navigation.move(player, "south")
+      otherPlayer.send_text.last.should == "Elminister arrives from the north"
   end
 
   it "should report failure message to Player" do
