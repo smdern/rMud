@@ -39,11 +39,16 @@ describe Actions, "look" do
   end
 
   # # > look player
-  # it "should return a description of a player and their inventory" do
-  #   Actions.look(playerA, "Raistlin")
-  #   playerA.send_text.first.should == "Raistlin"
-  #   playerA.send_text.last.should == playerB_description
-  # end
+  it "should return a description of a player" do
+    Actions.look(playerA, "Raistlin")
+    playerA.send_text.first.should == "Raistlin"
+    playerA.send_text.last.should == playerB_description
+  end
+
+  it"should notify player if the target isn't in the room" do
+    Actions.look(playerA, "Nudge Nudge Guy")
+    playerA.send_text.first.should == "That person isn't here."
+  end
 
   # # > look direction
   # it "should return the direction's room short description" do

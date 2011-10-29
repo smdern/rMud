@@ -9,8 +9,8 @@ module Actions
     "far to the"
   ]
 
-  def self.look player, args = nil
-    unless args
+  def self.look player, target = nil
+    unless target
       player.send_text << player.location.title
       player.send_text << player.location.long_description
       player.send_text << "Exits: " + player.location.exits.map {|exit| exit.alias.capitalize}.join(", ")
@@ -18,6 +18,14 @@ module Actions
         player.send_text << i.name unless i == player
       end
       return
+    end
+    target_index = player.location.contents.index { |t| t.name == target }
+
+    if target_index == nil
+      player.send_text << "That person isn't here."
+    else
+      player.send_text << player.location.contents[target_index].name
+      player.send_text << player.location.contents[target_index].description
     end
   end
 
