@@ -19,10 +19,16 @@ module Actions
       end
       return
     end
-    target_index = player.location.contents.index { |t| t.name == target }
 
+    target_index = player.location.exits.index{ |e| e.alias == target }
+    if target_index
+      player.send_text << player.location.exits[target_index].toRoom.short_description
+      return
+    end
+
+    target_index = player.location.contents.index { |t| t.name == target }
     if target_index == nil
-      player.send_text << "That person isn't here."
+      player.send_text << "What?"
     else
       player.send_text << player.location.contents[target_index].name
       player.send_text << player.location.contents[target_index].description

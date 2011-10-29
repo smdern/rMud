@@ -45,17 +45,19 @@ describe Actions, "look" do
     playerA.send_text.last.should == playerB_description
   end
 
-  it"should notify player if the target isn't in the room" do
-    Actions.look(playerA, "Nudge Nudge Guy")
-    playerA.send_text.first.should == "That person isn't here."
+  # # > look direction
+  it "should return the direction's room short description" do
+    Actions.look(playerA, "north")
+    playerA.send_text.first.should == "north_short_desc"
   end
 
-  # # > look direction
-  # it "should return the direction's room short description" do
-  #   Actions.look(playerA, "north")
-  #   playerA.send_text.first.should == "north_short_desc"
+  it"should notify player if the target isn't in the room" do
+    Actions.look(playerA, "Nudge Nudge Guy")
+    playerA.send_text.first.should == "What?"
+    Actions.look(playerA, "south")
+    playerA.send_text.should include "What?"
+  end
 
-  # end
 end
 
 describe Actions, "exits" do
