@@ -146,6 +146,7 @@ describe Actions, "scan" do
     Navigation.raw_move(startPlayer, startRoom)
     Navigation.raw_move(startOtherPlayer, startRoom)
   end
+
   # > scan
   it "should return contents of rooms in a line" do
     Actions.scan(startPlayer)
