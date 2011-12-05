@@ -2,12 +2,12 @@
 module Navigation
 
   ARRIVE_DIRECTIONS = { "north" => "the south",
-                          "south" => "the north",
-                          "east" => "the west",
-                          "west" => "the east",
-                          "up" => "below",
-                          "down" => "above"
- }
+                        "south" => "the north",
+                        "east" => "the west",
+                        "west" => "the east",
+                        "up" => "below",
+                        "down" => "above"
+  }
 
   def self.raw_move(player, room)
     raise ArgumentError unless player or room

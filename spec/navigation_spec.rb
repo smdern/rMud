@@ -1,8 +1,4 @@
-
-require 'exit'
-require 'room'
-require 'player'
-require 'navigation'
+require 'spec_helper'
 
 describe Navigation, "Traverse Rooms" do
   let(:player) { Player.new(:name => "Elminister") }

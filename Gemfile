@@ -7,6 +7,7 @@ gem 'rake'
 gem 'rspec'
 gem 'guard'
 gem 'guard-rspec'
+gem 'factory_girl'
 
 if RbConfig::CONFIG['target_os'] =~ /darwin/i
   gem 'rb-fsevent'

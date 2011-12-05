@@ -1,4 +1,5 @@
 require 'player'
+require 'spec_helper'
 
 describe Player, "player creation" do
   let(:name) { "Tetto" }
