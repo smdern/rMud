@@ -4,12 +4,12 @@ require 'room'
 require 'exit'
 require 'navigation'
 
-describe Actions, "look" do
+describe Actions, "#look" do
   let(:playerB_description) { "Description about playerB" }
   let(:startingRoom_long_description) { "This is long description of the starting room" }
   let(:startingRoom_short_description) { "this is the starting room" }
   let(:startingRoom_title) { "Starting Room" }
-  let(:playerA) { Player.new(:name => 'Tetto') }
+  let(:playerA) { Player.new(:name => 'Tetto', :description => 'foo') }
   let(:playerB) { Player.new(:name => "Raistlin", :description => playerB_description) }
   let(:startingRoom) { Room.new(:title => startingRoom_title,
                                 :long_description => startingRoom_long_description,
@@ -29,26 +29,29 @@ describe Actions, "look" do
     startingRoom.exits << Exit.new(:alias => "east", :toRoom => eastRoom)
   end
 
-  # > look
-  it "should return room title, long description, exits and contents" do
-    Actions.look(playerA)
-    playerA.send_text.first.should == startingRoom_title
-    playerA.send_text[1].should == startingRoom_long_description
-    playerA.send_text[2].should == "Exits: North, East"
-    playerA.send_text.last.should == "Raistlin"
+  context "#look" do
+    it "returns room title, long description, exits and contents" do
+      Actions.look(playerA)
+      playerA.send_text.first.should == startingRoom_title
+      playerA.send_text[1].should == startingRoom_long_description
+      playerA.send_text[2].should == "Exits: North, East"
+      playerA.send_text.last.should == "Raistlin"
+    end
   end
 
-  # # > look player
-  it "should return a description of a player" do
-    Actions.look(playerA, "Raistlin")
-    playerA.send_text.first.should == "Raistlin"
-    playerA.send_text.last.should == playerB_description
+  context "#look player" do
+    it "returns a description of a player" do
+      Actions.look(playerA, "Raistlin")
+      playerA.send_text.first.should == "Raistlin"
+      playerA.send_text.last.should == playerB_description
+    end
   end
 
-  # # > look direction
-  it "should return the direction's room short description" do
-    Actions.look(playerA, "north")
-    playerA.send_text.first.should == "north_short_desc"
+  context "#look direction" do
+    it "returns the direction's room short description" do
+      Actions.look(playerA, "north")
+      playerA.send_text.first.should == "north_short_desc"
+    end
   end
 
   it"should notify player if the target isn't in the room" do
@@ -60,7 +63,7 @@ describe Actions, "look" do
 
 end
 
-describe Actions, "exits" do
+describe Actions, "#exits" do
   let(:startingRoom) { Room.new(:title => "start") }
   let(:playerA) { Player.new(:name => "Tetto") }
   let(:northRoom) { Room.new(:title => "north room") }
@@ -75,16 +78,18 @@ describe Actions, "exits" do
   end
 
   # > exits
-  it "should return a list of exits and their room title" do
-    Actions.exits(playerA)
-    playerA.send_text.first.should == "Obvious exits:"
-    playerA.send_text[1].should == "North - north room"
-    playerA.send_text[2].should == "East  - east room"
-    playerA.send_text[3].should == "Up    - up dawg"
+  context "#exits" do
+    it "returns a list of exits and their room title" do
+      Actions.exits(playerA)
+      playerA.send_text.first.should == "Obvious exits:"
+      playerA.send_text[1].should == "North - north room"
+      playerA.send_text[2].should == "East  - east room"
+      playerA.send_text[3].should == "Up    - up dawg"
+    end
   end
 end
 
-describe Actions, "say" do
+describe Actions, "#say" do
   let(:room) { Room.new(:title => "room",
                         :long_description => "long_desc",
                         :short_description => "short_desc"
@@ -99,7 +104,7 @@ describe Actions, "say" do
     Navigation.raw_move(playerB, room)
     Navigation.raw_move(playerC, room)
   end
-  # > say 'hi'
+
   it "all players in the room should receive 'hi'" do
     Actions.say(playerA, "hi")
     playerB.send_text.first.should == "#{playerA.name} says 'hi'"

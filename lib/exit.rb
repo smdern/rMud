@@ -1,7 +1,7 @@
 
 class Exit
 
-  attr_accessor(:alias, :toRoom)
+  attr_accessor :alias, :toRoom
 
   def initialize args
     @alias = args[:alias] or raise ArgumentError

@@ -7,7 +7,7 @@ module CommandParser
 
   @@verbs = []
 
-  def self.parse actor, args
+  def parse actor, args
     verb, args = args.split(" ", 2)
 
     verb = @@verbs.find {|x| x.name == verb}
@@ -18,7 +18,7 @@ module CommandParser
 
   end
 
-  def self.define_verb verb
+  def define_verb verb
    @@verbs << verb;
   end
 

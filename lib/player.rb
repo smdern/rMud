@@ -1,13 +1,13 @@
 
 class Player
 
-  attr_accessor(:location, :send_text)
-  attr_reader(:name, :description)
+  attr_accessor :location, :send_text
+  attr_reader :name, :description
 
-  def initialize args
+  def initialize(name, args)
     @location = nil
     @send_text = []
-    @name = args[:name]
+    @name = name
     @description = args[:description]
   end
 
