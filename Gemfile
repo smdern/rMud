@@ -1,23 +1,22 @@
 source :rubygems
-require 'rbconfig'
 
-gem 'eventmachine', "~>1.0.0.beta"
+gem 'eventmachine'
 gem 'rake'
 
 gem 'rspec'
 gem 'guard'
 gem 'guard-rspec'
-gem "factory_girl", "~> 2.1.0"
 
-if RbConfig::CONFIG['target_os'] =~ /darwin/i
-  gem 'rb-fsevent'
-  gem 'growl'
-elsif RbConfig::CONFIG['target_os'] =~ /linux/i
-  gem 'rb-inotify'
-  gem 'libnotify'
-elsif RbConfig::CONFIG['target_os'] =~ /mswin|mingw/i
+platforms :mswin, :mingw do
   gem 'win32console'
   gem 'rb-fchange'
   gem 'rb-notifu'
+end
+
+platforms :ruby do
+  gem 'rb-fsevent', require: false
+  gem 'growl', require: false
+  gem 'rb-inotify', require: false
+  gem 'libnotify', require: false
 end
 

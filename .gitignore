@@ -1,6 +1,5 @@
 *.gem
 .rvmrc
 .DS_STORE
-Gemfile.lock
 /nbproject/private/
 tags
