@@ -1,12 +1,7 @@
 require 'rubygems'
 require 'rspec'
-require 'rspec/autorun'
 
-require 'factory_girl'
 
-RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-end
+lib = File.join(File.dirname(__FILE__), '..', 'lib/*.rb')
 
-File.join(File.dirname(__FILE__), '..', 'lib')
-File.join(File.dirname(__FILE__))
+Dir[lib].each {|file| require file }
