@@ -3,3 +3,5 @@
 .DS_STORE
 /nbproject/private/
 tags
+.ruby-version
+
