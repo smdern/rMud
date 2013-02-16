@@ -1,7 +1,12 @@
-require 'rubygems'
-require 'rspec'
+require 'bundler'
 
+Bundler.setup
 
-lib = File.join(File.dirname(__FILE__), '..', 'lib/*.rb')
+SPEC_ROOT = File.dirname(__FILE__)
 
-Dir[lib].each {|file| require file }
+RSpec.configure do |config|
+    config.mock_with :rspec
+end
+
+Dir[File.join(SPEC_ROOT, 'support', '*.rb')].each {|file| require file }
+
