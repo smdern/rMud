@@ -4,5 +4,15 @@ Dir.chdir File.join(__FILE__, "../..")
 
 puts "Starting Server"
 
+require 'eventmachine'
+require 'rmud/server'
+
+EventMachine.run {
+  EM.add_periodic_timer(1) do
+    puts "TICK"
+  end
+  EventMachine.start_server "127.0.0.1", 7575, EchoServer
+}
+
 puts "Stopping Server"
 
