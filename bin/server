@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+Dir.chdir File.join(__FILE__, "../..")
+
+puts "Starting Server"
+
+puts "Stopping Server"
+
